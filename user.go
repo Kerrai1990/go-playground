@@ -12,7 +12,7 @@ type user struct {
 }
 
 func (u *user) getUser(db *sql.DB) error {
-	statement := fmt.Sprintf("SELECT name. age FROM users WHERE id=%d", u.ID)
+	statement := fmt.Sprintf("SELECT name, age FROM users WHERE id=%d", u.ID)
 	return db.QueryRow(statement).Scan(&u.Name, &u.Age)
 }
 
@@ -46,7 +46,7 @@ func (u *user) createUser(db *sql.DB) error {
 }
 
 func getUsers(db *sql.DB, start, count int) ([]user, error) {
-	statement := fmt.Sprintf("SELECT name, age FROM USERS LIMIT %d OFFSET %d", count, start)
+	statement := fmt.Sprintf("SELECT name, age FROM USERS") // LIMIT %d OFFSET %d", count, start)
 
 	rows, err := db.Query(statement)
 
